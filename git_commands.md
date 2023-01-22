@@ -1,6 +1,6 @@
 create a new local repository using **git init**
 
-create and add a file to the repo using **git add**
+create and add a file to the repo using **git add** (add * adds all changes)
 
 commit changes using **git commit**
 
