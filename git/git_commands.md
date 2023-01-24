@@ -28,7 +28,14 @@ add all files to staging area by using **git add**
 
 commit the changes by using **git commit -m 'comment'**
 
-move local changes to remote repository by using **git push**
+move local changes to remote repository by using **git push** 
+
+for example: 
+```
+git push -u origin bug-fix-typo
+```
+in order to push changes and a branch
+
 
 get remote changes locally by using **git fetch** (not merged yet)
 
