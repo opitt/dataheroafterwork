@@ -38,3 +38,12 @@ get remove changes locally and merge automatically with **git pull**
 
 - origing == my fork
 - upstream == remote 
+
+## Help
+
+get help for a command by using **git help**
+
+'''
+git help branch
+'''
+
