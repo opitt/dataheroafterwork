@@ -36,7 +36,6 @@ git push -u origin bug-fix-typo
 ```
 in order to push changes and a branch
 
-
 get remote changes locally by using **git fetch** (not merged yet)
 
 get remove changes locally and merge automatically with **git pull**
@@ -52,6 +51,9 @@ project directory:
 - local repository == all commits of the project on the computer
 
 - remote repository == all commits of the project in the cloud (single source of truth)
+````
+git remote --verbose
+'''
 
 ## Help and config
 
