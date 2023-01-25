@@ -43,8 +43,15 @@ get remove changes locally and merge automatically with **git pull**
 
 ## Terminology
 
-- origing == my fork
+- origin == my fork
 - upstream == remote 
+
+project directory:
+- working tree == location on your computer that contains the directories and files of a single commit
+- staging area == index == changed files planned to be included in the next commit
+- local repository == all commits of the project on the computer
+
+- remote repository == all commits of the project in the cloud (single source of truth)
 
 ## Help and config
 
