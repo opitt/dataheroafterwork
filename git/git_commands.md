@@ -46,7 +46,14 @@ get remove changes locally and merge automatically with **git pull**
 - origing == my fork
 - upstream == remote 
 
-## Help
+## Help and config
+
+configure your user name and email for comitting changes by **git config --global**
+````
+git config --global user.name "myname"
+git config --global user.email "my@email.com"
+git config --global core.editor nano
+```
 
 get help for a command by using **git help**
 
