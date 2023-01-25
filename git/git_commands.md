@@ -13,6 +13,9 @@ switch to a branch using **git checkout**
 check the status of files changed using **git status**
 
 review recent commits using **git log**
+```
+git log --oneline --graph
+```
 
 revert changes using **git revert**
 
@@ -42,7 +45,7 @@ get remove changes locally and merge automatically with **git pull**
 
 ## Terminology
 
-- origin == my fork
+- origin == alias for the remote repository (can be used in git commands instead of the url)
 - upstream == remote 
 
 project directory:
