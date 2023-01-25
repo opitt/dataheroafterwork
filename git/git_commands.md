@@ -50,7 +50,7 @@ get remove changes locally and merge automatically with **git pull**
 
 get help for a command by using **git help**
 
-'''
+```
 git help branch
-'''
+```
 
