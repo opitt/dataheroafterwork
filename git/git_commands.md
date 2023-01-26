@@ -51,14 +51,14 @@ project directory:
 - local repository == all commits of the project on the computer
 
 - remote repository == all commits of the project in the cloud (single source of truth)
-````
+```
 git remote --verbose
-'''
+```
 
 ## Help and config
 
 configure your user name and email for comitting changes by **git config --global**
-````
+```
 git config --global user.name "myname"
 git config --global user.email "my@email.com"
 git config --global core.editor nano
@@ -69,4 +69,3 @@ get help for a command by using **git help**
 ```
 git help branch
 ```
-
