@@ -60,7 +60,7 @@ git remote --verbose
 
 - git id == object id == object name ... is a sha-1 hash, that identifies a object
 - HEAD and main are **references** to a git object. Can be used instead the id. You can use the first 4+ characters of an id, instead the full id.
-- HEAD is a reference to the current commit - usually points to the branch label of the current branch: eg. master
+- HEAD is normally a reference to a branchlabel, which points to the last commit - e.g. master, featureX ... A detached HEAD references a specific commit directly (instead a branch label). So - checkout the branch with new branchlabel ... will make HEAD pointing to the label i.e. the last commit of that branch
 ```
 git log --oneline -1
 ```
@@ -69,8 +69,14 @@ results in
 ```
 
 - branch == a unique path of commits ... The default branch is called **master**
-- branch label == is also reference to the last commit in the path ("**tip of the branch**"), i.e. implements a reference
+- branch label == is also reference to the last commit in the path ("**tip of the branch**"), i.e. implements a reference. Deleting a branch label only deletes the label - not the commits/the branch.
 
+- tags can be leightweight or **annotated** (recommended). Tags are a reference to a specific commit. They are not automatically pushed to the remote repo. Use:
+```
+git tag -a -m "Version 1.0" v1.0 HEAD
+git push --tags
+git push v1.0
+```
 
 ## Help and config
 
