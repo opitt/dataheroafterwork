@@ -58,6 +58,20 @@ project directory:
 git remote --verbose
 ```
 
+- git id == object id == object name ... is a sha-1 hash, that identifies a object
+- HEAD and main are **references** to a git object. Can be used instead the id. You can use the first 4+ characters of an id, instead the full id.
+- HEAD is a reference to the current commit - usually points to the branch label of the current branch: eg. master
+```
+git log --oneline -1
+```
+results in 
+23e343 (HEAD -> master) commit text
+```
+
+- branch == a unique path of commits ... The default branch is called **master**
+- branch label == is also reference to the last commit in the path ("**tip of the branch**"), i.e. implements a reference
+
+
 ## Help and config
 
 configure your user name and email for comitting changes by **git config --global**
