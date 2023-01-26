@@ -28,7 +28,13 @@ add all files to staging area by using **git add**
 
 commit the changes by using **git commit -m 'comment'**
 
-move local changes to remote repository by using **git push**
+move local changes to remote repository by using **git push** 
+
+for example: 
+```
+git push -u origin bug-fix-typo
+```
+in order to push changes and a branch
 
 get remote changes locally by using **git fetch** (not merged yet)
 
@@ -36,5 +42,31 @@ get remove changes locally and merge automatically with **git pull**
 
 ## Terminology
 
-- origing == my fork
+- origin == my fork
 - upstream == remote 
+
+project directory:
+- working tree == location on your computer that contains the directories and files of a single commit
+- staging area == index == changed files planned to be included in the next commit
+- local repository == all commits of the project on the computer
+
+- remote repository == all commits of the project in the cloud (single source of truth)
+````
+git remote --verbose
+'''
+
+## Help and config
+
+configure your user name and email for comitting changes by **git config --global**
+````
+git config --global user.name "myname"
+git config --global user.email "my@email.com"
+git config --global core.editor nano
+```
+
+get help for a command by using **git help**
+
+```
+git help branch
+```
+
