@@ -1,21 +1,56 @@
+## Overview
+![](clone-workflow.jpg)
+
 ## Getting started
-create a new local repository using **git init**
 
-create and add a file to the repo using **git add** (add * adds all changes)
+### create a new local repo inside a project directory
+```
+git init
+```
+your project directory contains
+- working tree: location on your computer that contains the directories and files **of a single commit**
+- staging area: (index) changed files planned to be included in the next commit
+- local repository: all commits of the project on the computer
 
-commit changes using **git commit**
+
+### configure your user name and email for comitting changes
+```
+git config --global user.name "myname"
+git config --global user.email "my@email.com"
+```
+### change the default editor
+```
+git config --global core.editor nano
+```
+
+## Do the basics
+### create and add files to the local repo 
+```
+git add .
+git add *
+```
+use "* " to add all changes or use "." to add all files in current directory
+
+### check the status of files changed or untracked
+```
+git status
+```
+
+### commit changes to staging area 
+```
+git commit -m "commit message"
+```
+
+### review recent commits
+```
+git log --oneline --graph [--all]
+```
 
 ## Work with branches
 create a branch using **git branch**
 
 switch to a branch using **git checkout**
 
-check the status of files changed using **git status**
-
-review recent commits using **git log**
-```
-git log --oneline --graph
-```
 
 revert changes using **git revert**
 
@@ -43,15 +78,10 @@ get remote changes locally by using **git fetch** (not merged yet)
 
 get remove changes locally and merge automatically with **git pull**
 
-## Terminology
+# Terminology
 
 - origin == alias for the remote repository (can be used in git commands instead of the url)
 - upstream == remote 
-
-project directory:
-- working tree == location on your computer that contains the directories and files of a single commit
-- staging area == index == changed files planned to be included in the next commit
-- local repository == all commits of the project on the computer
 
 - remote repository == all commits of the project in the cloud (single source of truth)
 ```
@@ -64,7 +94,8 @@ git remote --verbose
 ```
 git log --oneline -1
 ```
-results in 
+results in
+```
 23e343 (HEAD -> master) commit text
 ```
 
@@ -78,17 +109,12 @@ git push --tags
 git push v1.0
 ```
 
-## Help and config
+## Help
 
-configure your user name and email for comitting changes by **git config --global**
-```
-git config --global user.name "myname"
-git config --global user.email "my@email.com"
-git config --global core.editor nano
-```
-
-get help for a command by using **git help**
+### get help for a command
 
 ```
 git help branch
+git help commit
+git help add
 ```
