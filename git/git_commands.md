@@ -73,7 +73,7 @@ git branch -d <featurebranch>
 ```
 
 ### merge commit
-The master branch and the feature branch contain both changes, i.e. commits, after branching. A fast forward merge is not possible. The merge combines the commits at the tip of the branches and places it into a new (merge) commit in the master branch. This commit has then two parents. The merge can lead to a **merge conflict**, if both branches contain conflicting changes on the same thing.
+The master branch and the feature branch contain both changes, i.e. commits, after branching. A fast forward merge is not possible. The merge combines the commits at the tip of the branches and places it into a new (merge) commit in the master branch. This commit has then two parents. The merge can lead to a **merge conflict**, if both branches contain conflicting changes on the same thing. The merge base, "ours" commit (from master) and "theirs" commit (the feature branch) are used for the merge.
 ![](gitmerge_commit.jpeg)
 ```
 git checkout master
@@ -87,6 +87,18 @@ git merge --no-ff <featurebranchlabel>
 git branch -d <featurebranchlabel>
 ```
 ![](gitmerge_commit_noff.jpeg)
+
+### merge conflict
+Checkout master. Execute merge command. Git detects a conflict and modifies the file(s), for a human to make the decision for what to keep/change. Git markes the hunks in the file with <<<< >>>>. It shows ours and theirs. Update the file and add and commit the file.
+```
+git checkout master
+git merge <featurebranchlabel>
+# handle conflict e.g. update feature.py
+git add feature.py
+git commit
+git branch -d <featurebranchlabel>
+```
+![](gitmergeconflict.png)
 
 ## Synchronize repository
 
