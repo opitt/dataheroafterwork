@@ -1,27 +1,104 @@
+## Overview
+![](clone-workflow.jpg)
+
 ## Getting started
-create a new local repository using **git init**
 
-create and add a file to the repo using **git add** (add * adds all changes)
+### create a new local repo inside a project directory
+```
+git init
+```
+your project directory contains
+- working tree: location on your computer that contains the directories and files **of a single commit**
+- staging area: (index) changed files planned to be included in the next commit
+- local repository: all commits of the project on the computer
 
-commit changes using **git commit**
+
+### configure your user name and email for comitting changes
+```
+git config --global user.name "myname"
+git config --global user.email "my@email.com"
+```
+### change the default editor
+```
+git config --global core.editor nano
+```
+
+## Do the basics
+### create and add files to the local repo 
+```
+git add .
+git add *
+```
+use "* " to add all changes or use "." to add all files in current directory
+
+### check the status of files changed or untracked
+```
+git status
+```
+
+### commit changes to staging area 
+```
+git commit -m "commit message"
+```
+
+### review recent commits
+```
+git log --oneline --graph [--all]
+```
 
 ## Work with branches
 create a branch using **git branch**
 
 switch to a branch using **git checkout**
 
-check the status of files changed using **git status**
-
-review recent commits using **git log**
-```
-git log --oneline --graph
-```
 
 revert changes using **git revert**
 
 get a list of branches and active branch using **git branch**
 
 merge changes in your active branch into another branch using **git merge**
+
+## Merging branches
+- sqash merge (rewrite commit history)
+- rebase (rewrite commit history)
+
+### fast forward merge
+The master label can be set to the branch head label. The feature branch was a streight continuation of the base branch. No other commits were made to the base branch after the feature branch.
+![](gitfastforward-merge.jpeg)
+Here are the steps
+```
+git checkout master
+git merge <featurebranch>
+git branch -d <featurebranch>
+```
+
+### merge commit
+The master branch and the feature branch contain both changes, i.e. commits, after branching. A fast forward merge is not possible. The merge combines the commits at the tip of the branches and places it into a new (merge) commit in the master branch. This commit has then two parents. The merge can lead to a **merge conflict**, if both branches contain conflicting changes on the same thing. The merge base, "ours" commit (from master) and "theirs" commit (the feature branch) are used for the merge.
+![](gitmerge_commit.jpeg)
+```
+git checkout master
+git merge <featurebranchlable>
+git branch -d <featurebranchlabel>
+```
+You can force a merge commit with the **--no-ff** flag, even if a fast forward commit would be possible. This allows to see the branching in the commit history.
+```
+git checkout master
+git merge --no-ff <featurebranchlabel>
+git branch -d <featurebranchlabel>
+```
+![](gitmerge_commit_noff.jpeg)
+
+### merge conflict
+Checkout master. Execute merge command. Git detects a conflict and modifies the file(s), for a human to make the decision for what to keep/change. Git markes the hunks in the file with <<<< >>>>. It shows ours and theirs. Update the file and add and commit the file.
+```
+git checkout master
+git merge <featurebranchlabel>
+# handle conflict e.g. update feature.py
+git add feature.py
+git commit
+git branch -d <featurebranchlabel>
+```
+![](gitmergeconflict.png)
 
 ## Synchronize repository
 
@@ -43,15 +120,10 @@ get remote changes locally by using **git fetch** (not merged yet)
 
 get remove changes locally and merge automatically with **git pull**
 
-## Terminology
+# Terminology
 
 - origin == alias for the remote repository (can be used in git commands instead of the url)
 - upstream == remote 
-
-project directory:
-- working tree == location on your computer that contains the directories and files of a single commit
-- staging area == index == changed files planned to be included in the next commit
-- local repository == all commits of the project on the computer
 
 - remote repository == all commits of the project in the cloud (single source of truth)
 ```
@@ -64,7 +136,8 @@ git remote --verbose
 ```
 git log --oneline -1
 ```
-results in 
+results in
+```
 23e343 (HEAD -> master) commit text
 ```
 
@@ -78,17 +151,12 @@ git push --tags
 git push v1.0
 ```
 
-## Help and config
+## Help
 
-configure your user name and email for comitting changes by **git config --global**
-```
-git config --global user.name "myname"
-git config --global user.email "my@email.com"
-git config --global core.editor nano
-```
-
-get help for a command by using **git help**
+### get help for a command
 
 ```
 git help branch
+git help commit
+git help add
 ```
