@@ -8,14 +8,14 @@
 git init
 ```
 your project directory contains
-- working tree: location on your computer that contains the directories and files **of a single commit**
-- staging area: (index) changed files planned to be included in the next commit
-- local repository: all commits of the project on the computer
+- *working tree*: location on your computer that contains the directories and files **of a single commit**
+- *staging area*: (index) changed files planned to be included in the next commit
+- *local repository*: all commits of the project on the computer
 
 ### clone a remote repository
 Create a local copy (project) inside the current directory (and keep in synch with remote repo)
 ```
-git clone \<url\>
+git clone <url>
 ```
 
 ### configure your user name and email for comitting changes
@@ -51,8 +51,11 @@ git commit -m "commit message"
 git log --oneline --graph [--all]
 ```
 
-## Work with branches
-Create a branch using and switch to it
+## work with branches
+A branch is a unique path of commits ... The default branch is called **master** or main.
+A branch label is a reference to the last commit in the path ("**tip of the branch**"), i.e. implements a reference. Deleting a branch label only deletes the label - not the commits/the branch.
+
+### Create a branch using and switch to it
 ```
 git checkout -b feature1 
 ```
@@ -65,12 +68,12 @@ Checkout a branch to switch and work on it.
 git checkout master
 ```
 
-revert changes using **git revert**
+A **detached HEAD** references a specific commit directly (instead a branch label). So - checkout the branch with new branchlabel ... will make HEAD pointing to the label i.e. the last commit of that branch.
 
-## Merging branches
+### Merging branches
 Merge changes in your *active* branch with another branch using git merge.
 
-### fast forward merge
+#### fast forward merge
 The master label can be set to the branch head label. The feature branch was a streight continuation of the base branch. No other commits were made to the base branch after the feature branch.
 ![](gitfastforward-merge.jpeg)
 Here are the steps
@@ -80,7 +83,7 @@ git merge <featurebranch>
 git branch -d <featurebranch>
 ```
 
-### merge commit
+#### merge commit
 The master branch and the feature branch contain both changes, i.e. commits, after branching. A fast forward merge is not possible. The merge combines the commits at the tip of the branches and places it into a new (merge) commit in the master branch. This commit has then two parents. The merge can lead to a **merge conflict**, if both branches contain conflicting changes on the same thing. The merge base, "ours" commit (from master) and "theirs" commit (the feature branch) are used for the merge.
 ![](gitmerge_commit.jpeg)
 ```
@@ -108,12 +111,11 @@ git branch -d <featurebranchlabel>
 ```
 ![](gitmergeconflict.png)
 
-## sqash merge (rewrite commit history)
+### sqash merge (rewrite commit history)
 
-## rebase (rewrite commit history)
+### rebase (rewrite commit history)
 
-## tracking branch (label)
-
+### tracking branch (label)
 A tracking branch label is a label to a local branch that represents represents the remote branch (at the last network command, like clone). It's used to keep remote and local repositories in synch. 
 
 E.g. cloning creates a local copy of the remote master branch and it's labels HEAD and master. An additional tracking branch label is created for the default branch e.g. **origin/master**. origin is an alias for the remote repository url. master is the default branch. origin can be used in git commands instead of the origin/master or repo_url/master.
@@ -125,6 +127,11 @@ The tracking branch label is only updated with network commands. I.e. local comm
 - The origin/master label represents the tip of the tracking branch that tracks the master branch on the remote repository.
 - The origin/HEAD label represents the tip of the default branch on the remote repository. The default branch on the remote repository is the master branch.
 
+### rebase
+This changes the commit history of the repo. Dont use it, when someone else works on the changes. Rebasing changes commit ids. Rebasing changes the parent of a commit.
+![](gitrebase_reapplycommits.jpeg)
+In case of conflicts, you can decide to resolve or abort the rebase.
+![](gitrebase_resolvingmergeconflics.jpeg)
 
 ## Synchronize repository
 Network commands. See also **clone** above.
@@ -158,12 +165,6 @@ Recommended, to do a fetch or pull before a push.
 
 *Note: you need to authenicate to the repo during the first push. For GitHub use a generated access token as password (developer settings/token ...) and for Gitbucket use a generated app password (code/token: profile/personal settings/App passwords).*
 
-## rebase
-This changes the commit history of the repo. Dont use it, when someone else works on the changes. Rebasing changes commit ids. Rebasing changes the parent of a commit.
-![](gitrebase_reapplycommits.jpeg)
-In case of conflicts, you can decide to resolve or abort the rebase.
-![](gitrebase_resolvingmergeconflics.jpeg)
-
 ## Terminology
 
 - upstream == remote 
@@ -172,11 +173,10 @@ In case of conflicts, you can decide to resolve or abort the rebase.
 ```
 git remote --verbose
 ```
-
+## Git objects
 - git id == object id == object name ... is a sha-1 hash, that identifies a object (commit).
-- HEAD and main are **references** to a git commit object. Can be used instead the id. You can use the first 4+ characters of an id, instead the full id.
+- HEAD, main or master are **references** to a git commit object. Can be used instead the id. You can use the first 4+ characters of an id, instead the full id.
 - **HEAD** is normally a reference to a branchlabel that points to the last commit of a branch - e.g. master, featureX ... 
-- A **detached HEAD** references a specific commit directly (instead a branch label). So - checkout the branch with new branchlabel ... will make HEAD pointing to the label i.e. the last commit of that branch
 
 You can show the last n commits by specifying, how many commits you are interested in-
 ```
@@ -187,10 +187,8 @@ results in
 23e343 (HEAD -> master) commit text
 ```
 
-- branch == a unique path of commits ... The default branch is called **master**
-- branch label == is also reference to the last commit in the path ("**tip of the branch**"), i.e. implements a reference. Deleting a branch label only deletes the label - not the commits/the branch.
-
-- tags can be leightweight or **annotated** (recommended). Tags are a reference to a specific commit. They are not automatically pushed to the remote repo. Use:
+## Tagging a specific commit
+Tags can be leightweight or **annotated** (recommended). Tags are a reference to a specific commit. They are not automatically pushed to the remote repo. Use:
 ```
 git tag -a -m "Version 1.0" v1.0 HEAD
 git push --tags
