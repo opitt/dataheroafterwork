@@ -47,20 +47,23 @@ git log --oneline --graph [--all]
 ```
 
 ## Work with branches
-create a branch using **git branch**
-
-switch to a branch using **git checkout**
-
+Create a branch using and switch to it
+```
+git checkout -b feature1 
+```
+Get a list of branches and the active branch. Use --all to include tracking branch labels (see below).
+```
+git branch [--all]
+```
+Checkout a branch to switch and work on it.
+```
+git checkout master
+```
 
 revert changes using **git revert**
 
-get a list of branches and active branch using **git branch**
-
-merge changes in your active branch into another branch using **git merge**
-
 ## Merging branches
-- sqash merge (rewrite commit history)
-- rebase (rewrite commit history)
+Merge changes in your *active* branch with another branch using git merge.
 
 ### fast forward merge
 The master label can be set to the branch head label. The feature branch was a streight continuation of the base branch. No other commits were made to the base branch after the feature branch.
@@ -100,6 +103,22 @@ git branch -d <featurebranchlabel>
 ```
 ![](gitmergeconflict.png)
 
+## sqash merge (rewrite commit history)
+
+## rebase (rewrite commit history)
+
+## Tracking branch (label)
+
+A tracking branch label is a label to a local branch that represents represents the remote branch (at the last network command, like clone). It's used to keep remote and local repositories in synch. 
+
+E.g. cloning creates a local copy of the remote master branch and it's labels HEAD and master. An additional tracking branch label is created for the default branch e.g. **origin/master**. origin is an alias for the remote repository url. master is the default branch. origin can be used in git commands instead of the origin/master or repo_url/master.
+![](gittrackingbranchlabel.jpeg)
+The tracking branch label is only updated with network commands. I.e. local commits and commits in the remote repo are not automatically changing the trancking branch label. 
+![](gittrackingbranchoutofsynch.jpeg)
+
+
+
+
 ## Synchronize repository
 
 create a local copy (and keep in synch with central repo) using **git clone \<url\>**
@@ -120,9 +139,9 @@ get remote changes locally by using **git fetch** (not merged yet)
 
 get remove changes locally and merge automatically with **git pull**
 
-# Terminology
 
-- origin == alias for the remote repository (can be used in git commands instead of the url)
+## Terminology
+
 - upstream == remote 
 
 - remote repository == all commits of the project in the cloud (single source of truth)
@@ -130,9 +149,12 @@ get remove changes locally and merge automatically with **git pull**
 git remote --verbose
 ```
 
-- git id == object id == object name ... is a sha-1 hash, that identifies a object
-- HEAD and main are **references** to a git object. Can be used instead the id. You can use the first 4+ characters of an id, instead the full id.
-- HEAD is normally a reference to a branchlabel, which points to the last commit - e.g. master, featureX ... A detached HEAD references a specific commit directly (instead a branch label). So - checkout the branch with new branchlabel ... will make HEAD pointing to the label i.e. the last commit of that branch
+- git id == object id == object name ... is a sha-1 hash, that identifies a object (commit).
+- HEAD and main are **references** to a git commit object. Can be used instead the id. You can use the first 4+ characters of an id, instead the full id.
+- **HEAD** is normally a reference to a branchlabel that points to the last commit of a branch - e.g. master, featureX ... 
+- A **detached HEAD** references a specific commit directly (instead a branch label). So - checkout the branch with new branchlabel ... will make HEAD pointing to the label i.e. the last commit of that branch
+
+You can show the last n commits by specifying, how many commits you are interested in-
 ```
 git log --oneline -1
 ```
