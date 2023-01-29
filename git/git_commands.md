@@ -12,7 +12,6 @@ your project directory contains
 - staging area: (index) changed files planned to be included in the next commit
 - local repository: all commits of the project on the computer
 
-
 ### configure your user name and email for comitting changes
 ```
 git config --global user.name "myname"
@@ -51,7 +50,7 @@ Create a branch using and switch to it
 ```
 git checkout -b feature1 
 ```
-Get a list of branches and the active branch. Use --all to include tracking branch labels (see below).
+Get a list of branches and the active branch. Use --all to include *tracking branch* labels (see below).
 ```
 git branch [--all]
 ```
@@ -107,7 +106,7 @@ git branch -d <featurebranchlabel>
 
 ## rebase (rewrite commit history)
 
-## Tracking branch (label)
+## tracking branch (label)
 
 A tracking branch label is a label to a local branch that represents represents the remote branch (at the last network command, like clone). It's used to keep remote and local repositories in synch. 
 
@@ -116,7 +115,9 @@ E.g. cloning creates a local copy of the remote master branch and it's labels HE
 The tracking branch label is only updated with network commands. I.e. local commits and commits in the remote repo are not automatically changing the trancking branch label. 
 ![](gittrackingbranchoutofsynch.jpeg)
 
-
+- The master label represents the tip of the local master branch.
+- The origin/master label represents the tip of the tracking branch that tracks the master branch on the remote repository.
+- The origin/HEAD label represents the tip of the default branch on the remote repository. The default branch on the remote repository is the master branch.
 
 
 ## Synchronize repository
