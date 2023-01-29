@@ -12,6 +12,12 @@ your project directory contains
 - staging area: (index) changed files planned to be included in the next commit
 - local repository: all commits of the project on the computer
 
+### clone a remote repository
+Create a local copy (project) inside the current directory (and keep in synch with remote repo)
+```
+git clone \<url\>
+```
+
 ### configure your user name and email for comitting changes
 ```
 git config --global user.name "myname"
@@ -121,25 +127,42 @@ The tracking branch label is only updated with network commands. I.e. local comm
 
 
 ## Synchronize repository
+Network commands. See also **clone** above.
 
-create a local copy (and keep in synch with central repo) using **git clone \<url\>**
+### fetch
+Retrieve new objects and references - get remote changes locally without merging.
+```
+git fetch
+```
+Tracking branches are updated. 
 
-add all files to staging area by using **git add**
+The find out if local branch and remote are in synch. 
+```
+git status -v
+git log --oneline --graph --all
+```
 
-commit the changes by using **git commit -m 'comment'**
+### pull
+Combines *git fetch* and *git merge FETCH_HEAD*. The tracking branch will be merged into the local branch. Default merge option is --ff (fast forward merge). It can also be --no-ff to force a merge commit (instead ff) if possible.
 
-move local changes to remote repository by using **git push** 
+Pull only merges, when you have no uncommitted changes.
 
-for example: 
+### push 
+Add commits to a remote repository i.e. synchronises local changes to a remote repository. 
 ```
 git push -u origin bug-fix-typo
 ```
-in order to push changes and a branch
+The -u option creates a tracking branch i.e. keeps track of the branch with remote repo.
 
-get remote changes locally by using **git fetch** (not merged yet)
+Recommended, to do a fetch or pull before a push.
 
-get remove changes locally and merge automatically with **git pull**
+*Note: you need to authenicate to the repo during the first push. For GitHub use a generated access token as password (developer settings/token ...) and for Gitbucket use a generated app password (code/token: profile/personal settings/App passwords).*
 
+## rebase
+This changes the commit history of the repo. Dont use it, when someone else works on the changes. Rebasing changes commit ids. Rebasing changes the parent of a commit.
+![](gitrebase_reapplycommits.jpeg)
+In case of conflicts, you can decide to resolve or abort the rebase.
+![](gitrebase_resolvingmergeconflics.jpeg)
 
 ## Terminology
 
