@@ -1,3 +1,5 @@
+# Exploring itertools zip_longest function
+
 import itertools as it
 
 a = [1,2,3,4]
