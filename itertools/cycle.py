@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import itertools as it
-start = 1000
-prefix = "ABC"
-n = 20
-ids = [a+str(b) for a,b,c in zip(it.cycle(prefix),it.count(start),range(n))]
-print(ids)
-=======
 from itertools import cycle, count
 
 # Example 1
@@ -34,4 +26,3 @@ def gen_id():
 id=gen_id()
 ids = [next(id) for _ in range(n)]
 print(*ids, sep="\n")
->>>>>>> 4a793f14418067591fc823604030bfc7d1406038
